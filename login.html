@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - أكاديمية سمر</title>
+    <style>
+        :root { --primary: #6c5ce7; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f5f7fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .login-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
+        h1 { color: var(--primary); font-size: 24px; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; text-align: right; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #2d3436; }
+        input { width: 100%; padding: 12px; border: 2px solid #dfe6e9; border-radius: 10px; box-sizing: border-box; text-align: right; font-size: 16px; }
+        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        button:hover { background: #5b4bc4; }
+        #msg { margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h1>أكاديمية سمر 🌟</h1>
+    <form id="loginForm">
+        <div class="input-group">
+            <label>اسم الطالب البطل:</label>
+            <input type="text" id="studentName" placeholder="اكتب اسمك هنا" required>
+        </div>
+        <div class="input-group">
+            <label>اسم الماما:</label>
+            <input type="text" id="teacherName" placeholder="اسم ولي الأمر" required>
+        </div>
+        <div class="input-group">
+            <label>رقم واتساب الماما:</label>
+            <input type="tel" id="parentPhone" placeholder="01xxxxxxxxx" required>
+        </div>
+        <button type="submit" id="submitBtn">انطلق للأكاديمية 🚀</button>
+    </form>
+    <p id="msg"></p>
+</div>
+
+<script>
+    const form = document.getElementById('loginForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzQRlo_oaVIfyvlo7T_D4y2-9HWtAWpJMWIXXnpeGozzQDHVWWhGSN-UsIL3Oh5BX8Q6A/exec';
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('msg').innerHTML = "جاري التحقق من البيانات...";
+
+        const studentName = document.getElementById('studentName').value;
+        // حفظ الاسم في ذاكرة المتصفح للترحيب به في الداشبورد
+        localStorage.setItem('studentName', studentName);
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({
+                type: 'login',
+                studentName: studentName,
+                teacherName: document.getElementById('teacherName').value,
+                parentPhone: document.getElementById('parentPhone').value
+            })
+        }).then(() => {
+            window.location.href = 'dashboard.html';
+        }).catch(err => {
+            alert("خطأ في الاتصال، حاول مرة أخرى");
+            document.getElementById('submitBtn').disabled = false;
+        });
+    });
+</script>
+</body>
+</html>
