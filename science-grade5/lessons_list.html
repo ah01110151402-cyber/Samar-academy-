@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دروس العلوم - الصف الخامس</title>
+    <style>
+        :root { --primary: #6c5ce7; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); text-align: center; padding: 20px; margin: 0; }
+        h1 { color: #2d3436; margin-bottom: 30px; }
+        .lessons-container { max-width: 600px; margin: auto; display: grid; gap: 15px; }
+        .lesson-card { 
+            background: white; padding: 20px; border-radius: 15px; 
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s;
+        }
+        .lesson-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .lesson-info { text-align: right; }
+        .lesson-title { font-weight: bold; font-size: 18px; color: #2d3436; display: block; }
+        .btn { 
+            background: var(--primary); color: white; padding: 10px 20px; 
+            border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px;
+        }
+        .btn-quiz { background: #ff7675; } /* لون مختلف للاختبار */
+        .back-btn { 
+            display: inline-block; margin-top: 30px; color: #636e72; 
+            text-decoration: none; font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🔬 مادة العلوم - الصف الخامس</h1>
+
+    <div class="lessons-container">
+        <div class="lesson-card">
+            <div class="lesson-info">
+                <span class="lesson-title">📖 الدرس الأول</span>
+            </div>
+            <a href="lesson1/index.html" class="btn">ابدأ الآن 🚀</a>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-info">
+                <span class="lesson-title">📖 الدرس الثاني</span>
+            </div>
+            <a href="lesson2/index.html" class="btn">ابدأ الآن 🚀</a>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-info">
+                <span class="lesson-title">📖 الدرس الثالث</span>
+            </div>
+            <a href="lesson3/index.html" class="btn">ابدأ الآن 🚀</a>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-info">
+                <span class="lesson-title">📖 الدرس الرابع</span>
+            </div>
+            <a href="lesson4/index.html" class="btn">ابدأ الآن 🚀</a>
+        </div>
+
+        <div class="lesson-card">
+            <div class="lesson-info">
+                <span class="lesson-title">📖 الدرس الخامس</span>
+            </div>
+            <a href="lesson5/index.html" class="btn">ابدأ الآن 🚀</a>
+        </div>
+
+        <div class="lesson-card" style="border: 2px solid #ff7675;">
+            <div class="lesson-info">
+                <span class="lesson-title" style="color: #d63031;">🏆 الاختبار النهائي</span>
+            </div>
+            <a href="final-quiz/index.html" class="btn btn-quiz">تحدي الأبطال 🏁</a>
+        </div>
+    </div>
+
+    <a href="../dashboard.html" class="back-btn">⬅️ العودة للرئيسية</a>
+
+</body>
+</html>
