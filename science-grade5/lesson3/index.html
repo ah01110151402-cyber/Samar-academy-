@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سمر وأسرار نظام الأرض - الدرس الثالث</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+        
+        :root {
+            --primary: #1a5276;
+            --secondary: #27ae60;
+            --accent: #e67e22;
+            --earth: #8d6e63;
+            --water: #3498db;
+            --life: #2ecc71;
+            --air: #74b9ff;
+            --dark: #2d3436;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(180deg, #dfe6e9 0%, #b2bec3 50%, #dfe6e9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+        
+        .floating-icon {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.15;
+            pointer-events: none;
+            animation: float-around 15s infinite ease-in-out;
+            z-index: 0;
+        }
+        
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(20px, 30px) rotate(270deg); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8d6e63 0%, #6d4c41 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .header::before {
+            content: '🌍';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.08;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: rotate-earth 20s infinite linear;
+        }
+        
+        @keyframes rotate-earth {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+        
+        .header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .story-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .scene-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border-right: 6px solid transparent;
+        }
+        
+        .scene-card:nth-child(4n+1) { border-right-color: var(--earth); }
+        .scene-card:nth-child(4n+2) { border-right-color: var(--water); }
+        .scene-card:nth-child(4n+3) { border-right-color: var(--life); }
+        .scene-card:nth-child(4n+4) { border-right-color: var(--air); }
+        
+        .scene-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+        }
+        
+        .character-banner {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px dashed #e0e0e0;
+        }
+        
+        .character-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            animation: character-bounce 2s infinite ease-in-out;
+        }
+        
+        @keyframes character-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .character-earth { background: linear-gradient(135deg, #8d6e63 0%, #6d4c41 100%); }
+        .character-water { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+        .character-life { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .character-air { background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); }
+        
+        .character-info h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+        
+        .character-role {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .dialogue-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+            font-size: 1.15rem;
+            line-height: 2;
+            border-right: 5px solid;
+        }
+        
+        .dialogue-box::before {
+            content: '"';
+            position: absolute;
+            top: -5px;
+            right: 20px;
+            font-size: 5rem;
+            color: inherit;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .dialogue-box.earth { border-right-color: var(--earth); color: #5d4037; }
+        .dialogue-box.water { border-right-color: var(--water); color: #1565c0; }
+        .dialogue-box.life { border-right-color: var(--life); color: #2e7d32; }
+        .dialogue-box.air { border-right-color: var(--air); color: #0277bd; }
+        
+        .discovery-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.8rem;
+            border-radius: 18px;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .discovery-box:hover {
+            transform: scale(1.02);
+        }
+        
+        .discovery-box.active {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        
+        .discovery-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .discovery-content {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed rgba(255,255,255,0.3);
+        }
+        
+        .discovery-box.active .discovery-content {
+            display: block;
+            animation: reveal 0.5s ease;
+        }
+        
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .concept-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .concept-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .concept-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .concept-icon-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+        
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .compare-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        .compare-table td {
+            padding: 1.2rem;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .compare-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        
+        .activity-zone {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+        }
+        
+        .activity-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-arena {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 4px solid;
+            border-image: linear-gradient(90deg, var(--earth), var(--water), var(--life), var(--air)) 1;
+        }
+        
+        .quiz-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            font-weight: 900;
+        }
+        
+        .question-block {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border-right: 5px solid var(--accent);
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .q-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .q-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.7;
+            padding-top: 0.5rem;
+        }
+        
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .answer-option {
+            background: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: 15px;
+            border: 3px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-align: right;
+        }
+        
+        .answer-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .answer-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .answer-option.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .answer-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .results-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+            text-align: center;
+            z-index: 1000;
+            transition: transform 0.6s ease;
+            max-width: 90%;
+            width: 500px;
+        }
+        
+        .results-panel.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .trophy {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: trophy-bounce 1s infinite alternate;
+        }
+        
+        @keyframes trophy-bounce {
+            from { transform: scale(1) rotate(-10deg); }
+            to { transform: scale(1.1) rotate(10deg); }
+        }
+        
+        .progress-track {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .progress-line {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--earth), var(--water), var(--life), var(--air));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .nav-floating {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 99;
+        }
+        
+        .fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+        }
+        
+        @media print {
+            .discovery-box .discovery-content { display: block !important; }
+            .nav-floating, .progress-track { display: none; }
+            .scene-card { break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .scene-card { padding: 1.5rem; }
+            .character-banner { flex-direction: column; text-align: center; }
+            .quiz-arena { padding: 1.5rem; }
+            .answers-grid { grid-template-columns: 1fr; }
+        }
+    
+       /* ===== CHAT DIALOGUE SECTION ===== */
+       .chat-intro-card {
+           background: white;
+           border-radius: 25px;
+           padding: 2rem 2.5rem;
+           margin-bottom: 2.5rem;
+           box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+           border-right: 6px solid var(--accent-gold, #FFD700);
+           position: relative;
+           z-index: 1;
+       }
+
+       .chat-intro-title {
+           font-size: 1.2rem;
+           font-weight: 800;
+           color: var(--primary, #1a237e);
+           text-align: center;
+           margin-bottom: 1.5rem;
+           padding-bottom: 1rem;
+           border-bottom: 2px dashed #e0e0e0;
+       }
+
+       .chat-wrap {
+           display: flex;
+           flex-direction: column;
+           gap: 14px;
+       }
+
+       .bubble {
+           max-width: 82%;
+           padding: 13px 18px;
+           border-radius: 20px;
+           font-size: 1.05rem;
+           line-height: 1.7;
+           position: relative;
+           animation: bubblePop 0.4s ease both;
+       }
+
+       @keyframes bubblePop {
+           from { opacity: 0; transform: scale(0.92) translateY(8px); }
+           to   { opacity: 1; transform: scale(1) translateY(0); }
+       }
+
+       .bubble-teacher {
+           align-self: flex-start;
+           background: #e3f2fd;
+           border: 1.5px solid #bbdefb;
+           border-top-right-radius: 4px;
+           color: #0d1b3e;
+       }
+
+       .bubble-student {
+           align-self: flex-end;
+           background: #fff9c4;
+           border: 1.5px solid #ffe082;
+           border-top-left-radius: 4px;
+           color: #333;
+           text-align: right;
+       }
+
+       .bubble-label {
+           font-size: 0.82rem;
+           font-weight: 800;
+           margin-bottom: 4px;
+           display: block;
+       }
+
+       .bubble-teacher .bubble-label { color: #1a237e; }
+       .bubble-student  .bubble-label { color: #e65100; }
+
+       /* ===== NAME BADGE IN HEADER ===== */
+       .name-badge-bar {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           gap: 1rem;
+           margin-top: 1rem;
+           flex-wrap: wrap;
+       }
+
+       .name-chip {
+           background: rgba(255,255,255,0.18);
+           border: 1.5px solid rgba(255,255,255,0.4);
+           padding: 0.35rem 1rem;
+           border-radius: 50px;
+           font-size: 0.9rem;
+           color: white;
+           backdrop-filter: blur(6px);
+       }
+
+       .change-name-btn {
+           background: #FFD700;
+           color: #0d1b3e;
+           border: none;
+           padding: 0.4rem 1.1rem;
+           border-radius: 50px;
+           font-family: 'Tajawal', sans-serif;
+           font-size: 0.85rem;
+           font-weight: 700;
+           cursor: pointer;
+           transition: 0.3s;
+       }
+       .change-name-btn:hover { transform: scale(1.05); }
+
+       /* ===== NAME EDIT MODAL ===== */
+       .name-modal-overlay {
+           display: none;
+           position: fixed;
+           inset: 0;
+           background: rgba(0,0,0,0.55);
+           z-index: 2000;
+           justify-content: center;
+           align-items: center;
+       }
+       .name-modal-overlay.open { display: flex; }
+
+       .name-modal {
+           background: white;
+           border-radius: 25px;
+           padding: 2rem 2.5rem;
+           width: 90%;
+           max-width: 380px;
+           text-align: center;
+           box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+           animation: modalPop 0.35s ease;
+       }
+       @keyframes modalPop {
+           from { transform: scale(0.85); opacity: 0; }
+           to   { transform: scale(1); opacity: 1; }
+       }
+       .name-modal h3 { color: #1a237e; font-size: 1.3rem; margin-bottom: 1.2rem; }
+       .name-modal label { display: block; text-align: right; font-weight: 700; margin-bottom: 5px; color: #555; font-size: 0.9rem; }
+       .name-modal input {
+           width: 100%; padding: 10px 14px; border: 2px solid #ddd; border-radius: 12px;
+           font-family: 'Tajawal', sans-serif; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box;
+           transition: 0.3s;
+       }
+       .name-modal input:focus { border-color: #1a237e; outline: none; }
+       .modal-save-btn {
+           background: #FFD700; color: #0d1b3e; border: none;
+           padding: 0.8rem 2rem; border-radius: 50px; font-family: 'Tajawal', sans-serif;
+           font-size: 1rem; font-weight: 800; cursor: pointer; width: 100%; transition: 0.3s;
+       }
+       .modal-save-btn:hover { background: #ffea00; transform: scale(1.03); }
+       .modal-close-btn {
+           margin-top: 0.6rem; background: none; border: none; color: #999;
+           font-family: 'Tajawal', sans-serif; cursor: pointer; font-size: 0.9rem;
+       }
+
+       /* ===== QUIZ LEVELS ===== */
+       .level-legend {
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 0.6rem;
+           margin-top: 1rem;
+       }
+       .level-tag {
+           padding: 0.3rem 0.9rem;
+           border-radius: 50px;
+           font-size: 0.85rem;
+           font-weight: 700;
+       }
+       .easy-tag    { background: #e8f5e9; color: #2e7d32; border: 1.5px solid #a5d6a7; }
+       .medium-tag  { background: #fffde7; color: #f57f17; border: 1.5px solid #fff176; }
+       .hard-tag    { background: #fce4ec; color: #c62828; border: 1.5px solid #ef9a9a; }
+       .advanced-tag{ background: #ede7f6; color: #4527a0; border: 1.5px solid #b39ddb; }
+
+       .level-divider {
+           text-align: center;
+           font-size: 1.1rem;
+           font-weight: 800;
+           padding: 0.7rem 1.5rem;
+           border-radius: 50px;
+           margin: 2rem 0 1.2rem;
+       }
+       .easy-divider    { background: #e8f5e9; color: #2e7d32; }
+       .medium-divider  { background: #fffde7; color: #f57f17; }
+       .hard-divider    { background: #fce4ec; color: #c62828; }
+       .advanced-divider{ background: #ede7f6; color: #4527a0; }
+
+       .q-easy     { background: #2e7d32 !important; }
+       .q-medium   { background: #f57f17 !important; }
+       .q-hard     { background: #c62828 !important; }
+       .q-advanced { background: linear-gradient(135deg, #4527a0, #7b1fa2) !important; }
+
+       /* Results overlay */
+       .results-overlay-bg {
+           display: none;
+           position: fixed;
+           inset: 0;
+           background: rgba(0,0,0,0.6);
+           z-index: 900;
+           backdrop-filter: blur(4px);
+       }
+       .results-overlay-bg.show { display: block; }
+       .results-panel-new {
+           display: none;
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%) scale(0);
+           background: white;
+           padding: 2.5rem;
+           border-radius: 30px;
+           box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+           text-align: center;
+           z-index: 1000;
+           max-width: 520px;
+           width: 90%;
+           transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+       }
+       .results-panel-new.show {
+           display: block;
+           transform: translate(-50%, -50%) scale(1);
+       }
+       .lvl-breakdown {
+           background: #f8f9fa;
+           border-radius: 16px;
+           padding: 1.2rem;
+           margin: 1rem 0;
+           text-align: right;
+       }
+       .lvl-breakdown h4 {
+           margin: 0 0 12px;
+           color: #333;
+           font-size: 1rem;
+       }
+       .lvl-row {
+           display: flex;
+           align-items: center;
+           gap: 8px;
+           margin-bottom: 8px;
+       }
+       .lvl-lbl {
+           min-width: 70px;
+           font-size: 0.85rem;
+           font-weight: 700;
+       }
+       .lvl-bar-wrap {
+           flex: 1;
+           background: #e0e0e0;
+           border-radius: 10px;
+           height: 12px;
+           overflow: hidden;
+       }
+       .lvl-bar {
+           height: 100%;
+           width: 0%;
+           border-radius: 10px;
+           transition: width 1.2s ease;
+       }
+       .bar-e { background: linear-gradient(90deg, #4caf50, #81c784); }
+       .bar-m { background: linear-gradient(90deg, #ff9800, #ffcc02); }
+       .bar-h { background: linear-gradient(90deg, #f44336, #ef9a9a); }
+       .bar-a { background: linear-gradient(90deg, #7b1fa2, #ce93d8); }
+       .lvl-num { min-width: 32px; font-size: 0.85rem; font-weight: 700; }
+       .retry-btn {
+           background: linear-gradient(135deg, #1a237e, #3949ab);
+           color: white;
+           border: none;
+           padding: 0.9rem 2.5rem;
+           border-radius: 50px;
+           font-size: 1rem;
+           font-weight: 700;
+           cursor: pointer;
+           font-family: 'Tajawal', sans-serif;
+           margin-top: 1rem;
+           transition: 0.3s;
+       }
+       .retry-btn:hover { transform: scale(1.05); }
+       .save-note {
+           background: #e8f5e9;
+           border-right: 4px solid #4caf50;
+           padding: 0.7rem 1rem;
+           border-radius: 10px;
+           font-size: 0.9rem;
+           color: #2e7d32;
+           margin: 0.8rem 0;
+       }
+
+       </style>
+</head>
+<body>
+    <div class="floating-icon" style="top: 10%; right: 5%;">🌍</div>
+    <div class="floating-icon" style="top: 30%; left: 8%; animation-delay: 2s;">💧</div>
+    <div class="floating-icon" style="top: 50%; right: 10%; animation-delay: 4s;">🌱</div>
+    <div class="floating-icon" style="top: 70%; left: 5%; animation-delay: 6s;">☁️</div>
+    
+    <div class="progress-track">
+        <div class="progress-line">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+    </div>
+    
+    <header class="header">
+        <h1>🌍 سمر وأسرار نظام الأرض</h1>
+        <p class="subtitle">الدرس الثالث: رحلة اكتشاف الأغلفة الأربعة</p>
+        <span class="badge">🔬 رحلة علمية تفاعلية</span>
+           <div class="name-badge-bar">
+           <span class="name-chip">👩‍🏫 <span class="teacher-name">سمر</span></span>
+           <span class="name-chip">🦸 <span class="student-name">معاذ</span></span>
+           <button class="change-name-btn" onclick="openNameModal()">✏️ تغيير الاسم</button>
+       </div>
+   </header>
+    
+    
+   <!-- Name Edit Modal -->
+   <div class="name-modal-overlay" id="nameModal">
+       <div class="name-modal">
+           <h3>✏️ تغيير الأسماء</h3>
+           <label>اسم البطل الصغير:</label>
+           <input type="text" id="modalStudentInput" placeholder="مثلاً: معاذ">
+           <label>اسم المعلمة / الماما:</label>
+           <input type="text" id="modalTeacherInput" placeholder="مثلاً: سمر">
+           <button class="modal-save-btn" onclick="saveNamesFromModal()">💾 حفظ الأسماء</button>
+           <button class="modal-close-btn" onclick="closeNameModal()">إلغاء</button>
+       </div>
+   </div>
+
+   <main class="story-container">
+        
+        
+       <!-- CHAT INTRO SECTION -->
+       <div class="chat-intro-card">
+           <div class="chat-intro-title">💬 قبل أن تبدأ الرحلة... حوار بين <span class="teacher-name">سمر</span> و<span class="student-name">معاذ</span></div>
+           <div class="chat-wrap">
+
+               <div class="bubble bubble-teacher" style="animation-delay:0.1s">
+                   <span class="bubble-label">👩‍🏫 <span class="teacher-name">سمر</span></span>
+                   يا <span class="student-name">معاذ</span>، لو الأرض كانت بيضة... إيه اللي يكون على قشرتها الخارجية؟ 🥚
+               </div>
+
+               <div class="bubble bubble-student" style="animation-delay:0.3s">
+                   <span class="bubble-label">🦸 <span class="student-name">معاذ</span></span>
+                   الصخور والتربة يا <span class="teacher-name">سمر</span>! وكمان الميه والهواء! 🌍
+               </div>
+
+               <div class="bubble bubble-teacher" style="animation-delay:0.5s">
+                   <span class="bubble-label">👩‍🏫 <span class="teacher-name">سمر</span></span>
+                   ممتاز! ودي بالظبط <strong>الأغلفة الأربعة</strong> — الصخري والمائي والحيوي والجوي. كل واحد فيهم له مملكة خاصة وملك خاص! 👑
+               </div>
+
+               <div class="bubble bubble-student" style="animation-delay:0.7s">
+                   <span class="bubble-label">🦸 <span class="student-name">معاذ</span></span>
+                   ملوك؟! هههه! وأنا من أي مملكة يا <span class="teacher-name">سمر</span>؟ 😄
+               </div>
+
+               <div class="bubble bubble-teacher" style="animation-delay:0.9s">
+                   <span class="bubble-label">👩‍🏫 <span class="teacher-name">سمر</span></span>
+                   أنت يا <span class="student-name">معاذ</span> من مملكة الغلاف الحيوي — مملكة كل الكائنات الحية! والأروع إن الأربع ممالك بتتعاون مع بعض عشان الحياة تستمر. يلا نعيش المغامرة! 🚀
+               </div>
+
+           </div>
+       </div>
+       <!-- END CHAT INTRO -->
+
+       <!-- Scene 1: Introduction -->
+        <article class="scene-card" id="scene1">
+            <div class="character-banner">
+                <div class="character-avatar character-earth">👧🏽</div>
+                <div class="character-info">
+                    <h3>سمر - المستكشفة الصغيرة</h3>
+                    <div class="character-role">🎒 تستعد لرحلة مثيرة حول كوكبنا</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box earth">
+                <p>في أحد أيام العطلة، وجدت سمر خريطة غامضة في علبة الصدفة التي جمعتها من شاطئ البحر. كانت الخريطة تظهر كوكب الأرض مقسماً إلى <strong>أربع ممالك سحرية</strong> تتعاون معاً لتبقى الحياة ممكنة...</p>
+                <p>"كل مملكة لها قوة خاصة" كتب على الخريطة. "لكن عندما تتعاون، يحدث العجب!"</p>
+            </div>
+            
+            <div class="discovery-box" onclick="this.classList.toggle('active')">
+                <div class="discovery-title">🗺️ اكتشف: ما هي الأغلفة الأربعة؟</div>
+                <div class="discovery-content">
+                    <p>كوكب الأرض مثل بيضة مقسمة إلى طبقات، لكننا نرى فقط القشرة الخارجية. هذه الطبقات تسمى <strong>الأغلفة</strong>:</p>
+                    <ul style="margin-top: 1rem; padding-right: 1.5rem; line-height: 2.2;">
+                        <li><strong>الغلاف الصخري (الليثوسفير):</strong> طبقة الصخور الصلبة</li>
+                        <li><strong>الغلاف المائي (الهيدروسفير):</strong> كل الماء على الأرض</li>
+                        <li><strong>الغلاف الحيوي (البيوسفير):</strong> كل الكائنات الحية</li>
+                        <li><strong>الغلاف الجوي (الأتموسفير):</strong> طبقة الغازات المحيطة بالأرض</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Scene 2: Lithosphere -->
+        <article class="scene-card" id="scene2">
+            <div class="character-banner">
+                <div class="character-avatar character-earth">🪨</div>
+                <div class="character-info">
+                    <h3>الملك الصخري - حامي الأساس</h3>
+                    <div class="character-role">🏔️ يحمل كل شيء على كتفيه</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box earth">
+                <p>"أنا الملك الصخري!" قال بصوت عميق كالرعد. "أنا الأرض الصلبة التي تمشي عليها. أحمل الجبال والوديان والبحار في حضني."</p>
+                <p>"لكنني لست مجرد صخور! أخزن الماء الجوفي في باطني، وأطلع المعادن النفيسة للنباتات. بدوني، لا يوجد مكان للحياة!"</p>
+            </div>
+            
+            <div class="concept-showcase">
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #efebe9; color: #5d4037;">🏔️</div>
+                    <h4>القشرة الأرضية</h4>
+                    <p>الطبقة الخارجية الرقيقة التي نعيش عليها</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #d7ccc8; color: #4e342e;">🌋</div>
+                    <h4>المنطقة الشاذة</h4>
+                    <p>الصخور المنصهرة تحت السطح</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #bcaaa4; color: #3e2723;">💎</div>
+                    <h4>المعادن</h4>
+                    <p>العناصر التي تحتاجها الكائنات الحية</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #a1887f; color: #3e2723;">💧</div>
+                    <h4>الماء الجوفي</h4>
+                    <p>الماء المخزن في طبقات الأرض</p>
+                </div>
+            </div>
+            
+            <div class="discovery-box" onclick="this.classList.toggle('active')">
+                <div class="discovery-title">🔍 تجربة منزلية: اكتشف الصخور</div>
+                <div class="discovery-content">
+                    <p><strong>ما تحتاجه:</strong> صخور مختلفة من حديقتك، ماء، خل</p>
+                    <p><strong>الخطوات:</strong></p>
+                    <ol style="margin-top: 0.5rem; padding-right: 1.5rem;">
+                        <li>انظر إلى الصخور بالعدسة المكبرة. هل ترى بلورات؟</li>
+                        <li>ضع قطرة خل على الصخرة. هل تسمع صوت فقاعات؟ (هذا يعني وجود كربونات)</li>
+                        <li>قارن بين صخور مختلفة: الرملية، الطينية، الجرانيت</li>
+                    </ol>
+                    <p style="margin-top: 1rem;"><strong>العلاقة بالغلاف الحيوي:</strong> النباتات تحتاج معادن من الصخور!</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Scene 3: Hydrosphere -->
+        <article class="scene-card" id="scene3">
+            <div class="character-banner">
+                <div class="character-avatar character-water">🌊</div>
+                <div class="character-info">
+                    <h3>الملكة المائية - أم الحياة</h3>
+                    <div class="character-role">💧 تغطي 71% من سطح الأرض</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box water">
+                <p>"أنا الملكة المائية!" تغنت بصوت كموج البحر. "أنا في المحيطات العميقة، والأنهار الجارية، والغيوم العائمة، وحتى في جسمك!"</p>
+                <p>"بدوني، تذبل النباتات وتموت الحيوانات. أنا وسيلة النقل للمواد الغذائية، وأغسل الأرض من التلوث. أنا سرّ الحياة!"</p>
+            </div>
+            
+            <table class="compare-table">
+                <tr>
+                    <th>نوع الماء</th>
+                    <th>النسبة</th>
+                    <th>الأهمية</th>
+                </tr>
+                <tr>
+                    <td>🌊 المحيطات والبحار</td>
+                    <td>97%</td>
+                    <td>تنظيم المناخ، موطن للكائنات البحرية</td>
+                </tr>
+                <tr>
+                    <td>🏔️ الجليد والأنهار الجليدية</td>
+                    <td>2%</td>
+                    <td>خزان مائي، انعكاس لأشعة الشمس</td>
+                </tr>
+                <tr>
+                    <td>💧 المياه العذبة (أنهار، بحيرات)</td>
+                    <td>1%</td>
+                    <td>شرب الإنسان والحيوان، الري</td>
+                </tr>
+                <tr>
+                    <td>☁️ بخار الماء في الجو</td>
+                    <td>ضئيلة</td>
+                    <td>تكوين الغيوم والمطر</td>
+                </tr>
+            </table>
+            
+            <div class="activity-zone">
+                <div class="activity-title">🧪 نشاط: دورة الماء في زجاجة</div>
+                <p>ضع ماءً في زجاجة شفافة، أغلقها بإحكام، وضعها في الشمس. سترى قطرات تتكون على الجدران!</p>
+                <p><strong>ما يحدث:</strong> التبخر ← التكاثف ← الهطول (مصغر)</p>
+            </div>
+        </article>
+        
+        <!-- Scene 4: Biosphere -->
+        <article class="scene-card" id="scene4">
+            <div class="character-banner">
+                <div class="character-avatar character-life">🌳</div>
+                <div class="character-info">
+                    <h3>الملك الحيوي - رقصة الحياة</h3>
+                    <div class="character-role">🦋 يجمع كل الكائنات الحية</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box life">
+                <p>"أنا الملك الحيوي!" قال وهو يرقص مع الفراشات والطيور. "أنا لست مكاناً واحداً، أنا <strong>كلwhere</strong> توجد فيه حياة!"</p>
+                <p>"أعيش في قاع المحيط العميق، وعلى قمة الجبال الشاهقة، وفي الهواء، وداخل تربتك. أنا الشجرة التي تتنفس، والبكتيريا التي تحلل الموتى، وأنت يا سمر!"</p>
+            </div>
+            
+            <div class="concept-showcase">
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #e8f5e9; color: #2e7d32;">🌱</div>
+                    <h4>المُنتجون</h4>
+                    <p>النباتات التي تصنع الغذاء بالشمس</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #c8e6c9; color: #388e3c;">🐇</div>
+                    <h4>المُستهلِكون</h4>
+                    <p>الحيوانات التي تأكل النباتات أو الحيوانات</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #a5d6a7; color: #43a047;">🍄</div>
+                    <h4>المُحلِّلات</h4>
+                    <p>الفطريات والبكتيريا تعيد المواد للتربة</p>
+                </div>
+                <div class="concept-item">
+                    <div class="concept-icon-wrap" style="background: #81c784; color: #2e7d32;">⭕</div>
+                    <h4>دورة المغذيات</h4>
+                    <p>لا شيء يضيع، كل شيء يُعاد استخدامه</p>
+                </div>
+            </div>
+            
+            <div class="discovery-box" onclick="this.classList.toggle('active')">
+                <div class="discovery-title">🌐 السلاسل الغذائية: من يأكل من؟</div>
+                <div class="discovery-content">
+                    <p><strong>مثال من حديقتك:</strong></p>
+                    <p style="font-size: 1.3rem; margin: 1rem 0;">🌿 نبات ← 🐛 يرقة ← 🐦 عصفور ← 🦅 صقر</p>
+                    <p>لكن هل تعلم؟ عندما يموت الصقر، تُحلله الفطريات وتعيد مواده للتربة ← تنبت نبتة جديدة!</p>
+                    <p><strong>هذا هو التوازن الدقيق في الغلاف الحيوي.</strong></p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Scene 5: Atmosphere -->
+        <article class="scene-card" id="scene5">
+            <div class="character-banner">
+                <div class="character-avatar character-air">☁️</div>
+                <div class="character-info">
+                    <h3>الملك الجوي - الدرع الواقي</h3>
+                    <div class="character-role">🛡️ يحمي الأرض من الأخطار الفضائية</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box air">
+                <p>"أنا الملك الجوي!" قال وهو يحيط بالأرض بأحضانه الغازية. "أنا غير مرئي لكنني حيوي. أحفظ الأرض دافئة كالدفيئة، وأمنع الأشعة الضارة، وأنقل الماء من مكان لآخر."</p>
+                <p>"بدوني، ستكون الأرض كالقمر: بارد، جاف، مشع، بلا حياة!"</p>
+            </div>
+            
+            <div class="discovery-box" onclick="this.classList.toggle('active')">
+                <div class="discovery-title">🌡️ طبقات الغلاف الجوي</div>
+                <div class="discovery-content">
+                    <table style="width: 100%; color: white; border-collapse: collapse;">
+                        <tr style="background: rgba(255,255,255,0.2);">
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);"><strong>الطبقة</strong></td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);"><strong>الارتفاع</strong></td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);"><strong>الوظيفة</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">التروبوسفير</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">0-12 كم</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">حيث نعيش، الطقس، الغيوم</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.1);">
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">الستراتوسفير</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">12-50 كم</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">طبقة الأوزون تحمي من الأشعة فوق البنفسجية</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">الميزوسفير</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">50-80 كم</td>
+                            <td style="padding: 0.8rem; border: 1px solid rgba(255,255,255,0.3);">تحترق فيها النيازك 💫</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Scene 6: The Interaction -->
+        <article class="scene-card" id="scene6">
+            <div class="character-banner">
+                <div class="character-avatar character-earth">🤝</div>
+                <div class="character-info">
+                    <h3>الملوك الأربعة - اجتماع العمالقة</h3>
+                    <div class="character-role">🌐 التعاون يصنع المعجزات</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box earth">
+                <p>اجتمعت الملوك الأربعة في قمة عظيمة. قال الملك الصخري: "أنا أقدم الأساس." قالت الملكة المائية: "أنا أجلب الحياة." قال الملك الحيوي: "أنا أنشر الحياة." قال الملك الجوي: "أنا أحمي الجميع."</p>
+                <p>ثم قالوا معاً: <strong>"لكننا بدون بعضنا البعض لا شيء!"</strong></p>
+            </div>
+            
+            <div class="activity-zone">
+                <div class="activity-title">🎯 لعبة التفاعل: اربط كل غلاف بوظيفته</div>
+                <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                        <strong>🌧️ المطر:</strong> الغلاف الجوي (تكاثف) + الغلاف المائي (تبخر)
+                    </div>
+                    <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                        <strong>🌱 نمو النبات:</strong> الغلاف الصخري (معادن) + الغلاف المائي (ري) + الغلاف الجوي (ثاني أكسيد الكربون) + الغلاف الحيوي (البذرة نفسها)
+                    </div>
+                    <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 10px;">
+                        <strong>🌋 البركان:</strong> الغلاف الصخري (المنطقة الشاذة) يؤثر على الغلاف الجوي (الغازات) والغلاف الحيوي (تدمير/إنشاء تربة جديدة)
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Scene 7: Human Impact -->
+        <article class="scene-card" id="scene7">
+            <div class="character-banner">
+                <div class="character-avatar character-life">👨‍👩‍👧</div>
+                <div class="character-info">
+                    <h3>البشر - أقوى لاعب في اللعبة</h3>
+                    <div class="character-role">⚡ يمكنهم الإصلاح أو التدمير</div>
+                </div>
+            </div>
+            
+            <div class="dialogue-box life">
+                <p>"نحن البشر!" قالت سمر بجدية. "نحن جزء من الغلاف الحيوي، لكننا نؤثر على كل الأغلفة الأربعة. عندما نقطع الأشجار، نؤذي الغلاف الحيوي. عندما نلوث الهواء، نؤذي الغلاف الجوي. عندما نُهدّر الماء، نؤذي الغلاف المائي."</p>
+                <p>"لكن يمكننا أيضاً أن نكون <strong>الحل</strong>! كل شجرة نغرسها، كل قطرة نحافظ عليها، كل نفس هواء نظيف نصنعه... يعيد التوازن للنظام!"</p>
+            </div>
+            
+            <div class="concept-showcase">
+                <div class="concept-item" style="border-top: 4px solid #e74c3c;">
+                    <div class="concept-icon-wrap" style="background: #ffebee; color: #c62828;">🏭</div>
+                    <h4>التلوث</h4>
+                    <p>يؤثر على الهواء والماء والتربة</p>
+                </div>
+                <div class="concept-item" style="border-top: 4px solid #f39c12;">
+                    <div class="concept-icon-wrap" style="background: #fff3e0; color: #ef6c00;">🌡️</div>
+                    <h4>الاحتباس الحراري</h4>
+                    <p>يغير مناخ الأرض بأكمله</p>
+                </div>
+                <div class="concept-item" style="border-top: 4px solid #27ae60;">
+                    <div class="concept-icon-wrap" style="background: #e8f5e9; color: #2e7d32;">♻️</div>
+                    <h4>الاستدامة</h4>
+                    <p>استخدام موارد الأرض بحكمة</p>
+                </div>
+                <div class="concept-item" style="border-top: 4px solid #3498db;">
+                    <div class="concept-icon-wrap" style="background: #e3f2fd; color: #1565c0;">🌳</div>
+                    <h4>إعادة التحريج</h4>
+                    <p>إعادة الحياة للأرض</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Quiz Section -->
+        <section class="quiz-arena" id="quiz">
+            <div class="quiz-header">
+                <h2>🏆 اختبر معلوماتك — 20 سؤالاً</h2>
+                <p>الأسئلة مقسّمة من السهل للرفيع — هل تستطيع إتقان المستوى الرفيع؟</p>
+                <div class="level-legend">
+                    <span class="level-tag easy-tag">🟢 سهل (١-٥)</span>
+                    <span class="level-tag medium-tag">🟡 متوسط (٦-١٠)</span>
+                    <span class="level-tag hard-tag">🔴 صعب (١١-١٥)</span>
+                    <span class="level-tag advanced-tag">💎 رفيع (١٦-٢٠)</span>
+                </div>
+            </div>
+
+           <!-- ======== LEVEL 1: EASY ======== -->
+           <div class="level-divider easy-divider">🟢 المستوى الأول — سهل (أسئلة ١ إلى ٥)</div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-easy">1</div>
+                   <div class="q-text">أيُّ الغلافات يحتوي على كل ماء الأرض (محيطات، أنهار، مياه جوفية، غيوم)؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الصخري</div>
+                   <div class="answer-option" data-value="b">الغلاف المائي</div>
+                   <div class="answer-option" data-value="c">الغلاف الجوي</div>
+                   <div class="answer-option" data-value="d">الغلاف الحيوي</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="d">
+               <div class="question-header">
+                   <div class="q-number q-easy">2</div>
+                   <div class="q-text">أيُّ الغلافات يضمّ جميع الكائنات الحية — إنسان وحيوان ونبات وكائنات دقيقة؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الجوي</div>
+                   <div class="answer-option" data-value="b">الغلاف المائي</div>
+                   <div class="answer-option" data-value="c">الغلاف الصخري</div>
+                   <div class="answer-option" data-value="d">الغلاف الحيوي</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="a">
+               <div class="question-header">
+                   <div class="q-number q-easy">3</div>
+                   <div class="q-text">ما نسبة مساحة الماء على سطح كوكب الأرض تقريباً؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">71%</div>
+                   <div class="answer-option" data-value="b">50%</div>
+                   <div class="answer-option" data-value="c">30%</div>
+                   <div class="answer-option" data-value="d">90%</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="c">
+               <div class="question-header">
+                   <div class="q-number q-easy">4</div>
+                   <div class="q-text">الصخور والتربة والمعادن تنتمي إلى أيّ غلاف؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الحيوي</div>
+                   <div class="answer-option" data-value="b">الغلاف المائي</div>
+                   <div class="answer-option" data-value="c">الغلاف الصخري</div>
+                   <div class="answer-option" data-value="d">الغلاف الجوي</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-easy">5</div>
+                   <div class="q-text">عملية تحوّل الماء من سائل إلى بخار بفعل حرارة الشمس تُسمّى:</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">التكاثف</div>
+                   <div class="answer-option" data-value="b">التبخّر</div>
+                   <div class="answer-option" data-value="c">الهطول</div>
+                   <div class="answer-option" data-value="d">التجمّد</div>
+               </div>
+           </div>
+
+           <!-- ======== LEVEL 2: MEDIUM ======== -->
+           <div class="level-divider medium-divider">🟡 المستوى الثاني — متوسط (أسئلة ٦ إلى ١٠)</div>
+
+           <div class="question-block" data-correct="c">
+               <div class="question-header">
+                   <div class="q-number q-medium">6</div>
+                   <div class="q-text">أيّ طبقة في الغلاف الجوي تحمينا من الأشعة فوق البنفسجية الضارة؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">التروبوسفير</div>
+                   <div class="answer-option" data-value="b">الميزوسفير</div>
+                   <div class="answer-option" data-value="c">الستراتوسفير (طبقة الأوزون)</div>
+                   <div class="answer-option" data-value="d">الثيرموسفير</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="d">
+               <div class="question-header">
+                   <div class="q-number q-medium">7</div>
+                   <div class="q-text">أيٌّ ممّا يلي يُعتبر من المُحلِّلات التي تُعيد المواد للتربة؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الأشجار</div>
+                   <div class="answer-option" data-value="b">الأسود</div>
+                   <div class="answer-option" data-value="c">الإنسان</div>
+                   <div class="answer-option" data-value="d">الفطريات والبكتيريا</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-medium">8</div>
+                   <div class="q-text">المياه التي تتسرّب عبر التربة وتتجمّع في باطن الأرض تُسمّى:</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">مياه الأنهار</div>
+                   <div class="answer-option" data-value="b">المياه الجوفية</div>
+                   <div class="answer-option" data-value="c">مياه البحيرات</div>
+                   <div class="answer-option" data-value="d">بخار الماء</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="a">
+               <div class="question-header">
+                   <div class="q-number q-medium">9</div>
+                   <div class="q-text">من أين تحصل النباتات على المعادن اللازمة لنموّها؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الصخري (التربة)</div>
+                   <div class="answer-option" data-value="b">الغلاف الجوي</div>
+                   <div class="answer-option" data-value="c">الغلاف الحيوي فقط</div>
+                   <div class="answer-option" data-value="d">أشعة الشمس فقط</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="c">
+               <div class="question-header">
+                   <div class="q-number q-medium">10</div>
+                   <div class="q-text">ما الاسم العلمي لغلاف الغازات المحيطة بالأرض؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">البيوسفير</div>
+                   <div class="answer-option" data-value="b">الليثوسفير</div>
+                   <div class="answer-option" data-value="c">الأتموسفير</div>
+                   <div class="answer-option" data-value="d">الهيدروسفير</div>
+               </div>
+           </div>
+
+           <!-- ======== LEVEL 3: HARD ======== -->
+           <div class="level-divider hard-divider">🔴 المستوى الثالث — صعب (أسئلة ١١ إلى ١٥)</div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-hard">11</div>
+                   <div class="q-text">أيّ الخيارات يمثّل سلسلة غذائية صحيحة من المنتج للمفترس الأعلى؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">صقر ← عصفور ← يرقة ← نبات</div>
+                   <div class="answer-option" data-value="b">نبات ← يرقة ← عصفور ← صقر</div>
+                   <div class="answer-option" data-value="c">يرقة ← نبات ← صقر ← عصفور</div>
+                   <div class="answer-option" data-value="d">نبات ← صقر ← عصفور ← يرقة</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="c">
+               <div class="question-header">
+                   <div class="q-number q-hard">12</div>
+                   <div class="q-text">وفقاً لدورة المغذيات، ماذا يحدث للمواد العضوية في جسم الحيوان بعد وفاته؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">تختفي إلى الأبد في الهواء</div>
+                   <div class="answer-option" data-value="b">تتحول إلى صخور فوراً</div>
+                   <div class="answer-option" data-value="c">تُحلِّلها الفطريات وتعود للتربة لتغذية نبات جديد</div>
+                   <div class="answer-option" data-value="d">تطير مع الرياح إلى الغلاف الجوي</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-hard">13</div>
+                   <div class="q-text">لماذا لا توجد حياة على القمر رغم قربه من الأرض؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">لأن القمر بعيد عن الشمس ولا يصله ضوء كافٍ</div>
+                   <div class="answer-option" data-value="b">لافتقاره للغلاف الجوي والماء والمناخ الملائم</div>
+                   <div class="answer-option" data-value="c">لأنه مصنوع من الحديد الخالص</div>
+                   <div class="answer-option" data-value="d">لأن درجة حرارته منخفضة جداً فقط</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="a">
+               <div class="question-header">
+                   <div class="q-number q-hard">14</div>
+                   <div class="q-text">ما العلاقة الأساسية بين الغلاف الحيوي والغلاف المائي؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الكائنات الحية تحتاج الماء وتشارك في دورته</div>
+                   <div class="answer-option" data-value="b">الغلاف المائي يحتوي على الكائنات البحرية فقط</div>
+                   <div class="answer-option" data-value="c">لا توجد علاقة مباشرة بين الغلافين</div>
+                   <div class="answer-option" data-value="d">الغلاف الحيوي يتحكم في كمية الماء</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="d">
+               <div class="question-header">
+                   <div class="q-number q-hard">15</div>
+                   <div class="q-text">إذا اختفت النباتات من منطقة ما، ما أول تأثير مباشر على بقية الكائنات؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">ستزداد أعداد الحيوانات المفترسة</div>
+                   <div class="answer-option" data-value="b">ستتحسن جودة التربة</div>
+                   <div class="answer-option" data-value="c">ستزداد كمية المياه الجوفية</div>
+                   <div class="answer-option" data-value="d">ستموت الحيوانات العاشبة جوعاً ثم تتداعى بقية السلسلة الغذائية</div>
+               </div>
+           </div>
+
+           <!-- ======== LEVEL 4: ADVANCED ======== -->
+           <div class="level-divider advanced-divider">💎 المستوى الرابع — رفيع (أسئلة ١٦ إلى ٢٠)</div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-advanced">16</div>
+                   <div class="q-text">عند قطع الأشجار بكثرة، أيٌّ من السلاسل التالية يمثّل التأثير المتسلسل الصحيح؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">قطع الأشجار ← زيادة الأمطار ← نمو نباتات أكثر</div>
+                   <div class="answer-option" data-value="b">قطع الأشجار ← نقص النتح ← نقص الأمطار ← تصحّر التربة</div>
+                   <div class="answer-option" data-value="c">قطع الأشجار ← زيادة الأكسجين ← تحسّن البيئة</div>
+                   <div class="answer-option" data-value="d">قطع الأشجار ← نقص المعادن في الجو فقط</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="c">
+               <div class="question-header">
+                   <div class="q-number q-advanced">17</div>
+                   <div class="q-text">ما المقصود بمبدأ "لا شيء يضيع في الطبيعة" في دورة المغذيات؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الكائنات الحية تعيش للأبد ولا تموت</div>
+                   <div class="answer-option" data-value="b">النباتات لا تحتاج مواد غذائية</div>
+                   <div class="answer-option" data-value="c">كل مادة عضوية تُعاد استخدامها من كائن لآخر وللبيئة بلا نهاية</div>
+                   <div class="answer-option" data-value="d">الحيوانات تتجدد وتعود للحياة في دورة مستمرة</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="a">
+               <div class="question-header">
+                   <div class="q-number q-advanced">18</div>
+                   <div class="q-text">إذا زاد ثاني أكسيد الكربون في الغلاف الجوي بشكل كبير، ما السلسلة الأرجح للتأثيرات؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">ارتفاع الحرارة ← ذوبان الجليد (مائي) ← غرق أراضٍ (صخري) ← انقراض كائنات (حيوي)</div>
+                   <div class="answer-option" data-value="b">تقليل الأمطار فقط دون تأثير على الأغلفة الأخرى</div>
+                   <div class="answer-option" data-value="c">زيادة المياه الجوفية ← نمو النباتات بشكل طبيعي</div>
+                   <div class="answer-option" data-value="d">توقف دورة الماء تماماً وبشكل فوري</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="d">
+               <div class="question-header">
+                   <div class="q-number q-advanced">19</div>
+                   <div class="q-text">عند تلوّث النفط لمياه البحر، أيُّ الأغلفة يتأثّر أولاً ثم يؤثّر في البقية بالتسلسل؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الجوي → الأرضي → الحيوي → المائي</div>
+                   <div class="answer-option" data-value="b">الغلاف الحيوي → المائي → الجوي → الأرضي</div>
+                   <div class="answer-option" data-value="c">الغلاف الأرضي → المائي → الحيوي → الجوي</div>
+                   <div class="answer-option" data-value="d">الغلاف المائي → الحيوي (الأسماك) → الجوي (الطيور) → الأرضي (الشواطئ)</div>
+               </div>
+           </div>
+
+           <div class="question-block" data-correct="b">
+               <div class="question-header">
+                   <div class="q-number q-advanced">20</div>
+                   <div class="q-text">عالم يدرس منطقة صحراوية: تربة جافة، لا نباتات، حيوانات نادرة، هواء جافّ. أيّ الاستنتاجات الأدق علمياً؟</div>
+               </div>
+               <div class="answers-grid">
+                   <div class="answer-option" data-value="a">الغلاف الحيوي ضعيف بسبب ضعف الغلاف الجوي فقط</div>
+                   <div class="answer-option" data-value="b">ضعف الغلاف المائي أدّى لإضعاف الغلاف الحيوي والجوي — الأغلفة مترابطة</div>
+                   <div class="answer-option" data-value="c">الغلاف الأرضي هو السبب الوحيد لندرة الحياة هنا</div>
+                   <div class="answer-option" data-value="d">الأغلفة في الصحراء مستقلّة عن بعضها تماماً</div>
+               </div>
+           </div>
+           <div style="text-align: center; margin-top: 2.5rem;">
+               <button onclick="calculateScore3()" style="background:linear-gradient(135deg,#1a237e,#3949ab);color:white;border:none;padding:1.2rem 3rem;border-radius:50px;font-size:1.2rem;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(26,35,126,0.4);font-family:'Tajawal',sans-serif;transition:all 0.3s ease;">
+                   انتهيت! أظهر نتيجتي 🎯
+               </button>
+           </div>
+       </section>
+        
+    </main>
+    
+ 
+   <!-- Results Overlay -->
+   <div class="results-overlay-bg" id="overlayBg3" onclick="closeResults3()"></div>
+   <div class="results-panel-new" id="resultsPanel3">
+       <div id="trophy3" style="font-size:5rem;margin-bottom:0.5rem;animation:trophyBounce3 1s infinite alternate;">🏆</div>
+       <style>@keyframes trophyBounce3{from{transform:scale(1) rotate(-8deg)}to{transform:scale(1.1) rotate(8deg)}}</style>
+       <h2 id="title3" style="color:#1a2a6c;font-size:1.5rem;margin:0 0 8px;"></h2>
+       <div id="scoreDisplay3" style="font-size:3rem;font-weight:900;color:#1a5276;margin:10px 0;"></div>
+       <p id="msg3" style="font-size:1rem;color:#666;margin:0 0 15px;"></p>
+       <div class="lvl-breakdown">
+           <h4>📊 أداؤك بالمستويات</h4>
+           <div class="lvl-row">
+               <span class="lvl-lbl">🟢 سهل</span>
+               <div class="lvl-bar-wrap"><div class="lvl-bar bar-e" id="barE3"></div></div>
+               <span class="lvl-num" id="numE3">0/5</span>
+           </div>
+           <div class="lvl-row">
+               <span class="lvl-lbl">🟡 متوسط</span>
+               <div class="lvl-bar-wrap"><div class="lvl-bar bar-m" id="barM3"></div></div>
+               <span class="lvl-num" id="numM3">0/5</span>
+           </div>
+           <div class="lvl-row">
+               <span class="lvl-lbl">🔴 صعب</span>
+               <div class="lvl-bar-wrap"><div class="lvl-bar bar-h" id="barH3"></div></div>
+               <span class="lvl-num" id="numH3">0/5</span>
+           </div>
+           <div class="lvl-row">
+               <span class="lvl-lbl">💎 رفيع</span>
+               <div class="lvl-bar-wrap"><div class="lvl-bar bar-a" id="barA3"></div></div>
+               <span class="lvl-num" id="numA3">0/5</span>
+           </div>
+       </div>
+       <div class="save-note">✅ تم حفظ نتيجتك في سجل الإنجازات!</div>
+       <button onclick="closeResults3()" class="retry-btn">🔄 حاول مرة أخرى</button>
+   </div>
+    
+    <div class="nav-floating">
+        <button class="fab" onclick="window.print()" title="طباعة">🖨️</button>
+        <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="للأعلى">⬆️</button>
+    </div>
+
+    <script>
+       // ===== NAMES SYSTEM =====
+       const DEFAULT_STUDENT = 'معاذ';
+       const DEFAULT_TEACHER = 'سمر';
+
+       function applyNames(sName, tName) {
+           document.querySelectorAll('.student-name').forEach(el => el.innerText = sName);
+           document.querySelectorAll('.teacher-name').forEach(el => el.innerText = tName);
+       }
+
+       function loadNames() {
+           const sName = localStorage.getItem('studentName') || DEFAULT_STUDENT;
+           const tName = localStorage.getItem('teacherName') || DEFAULT_TEACHER;
+           applyNames(sName, tName);
+       }
+
+       function openNameModal() {
+           document.getElementById('modalStudentInput').value = localStorage.getItem('studentName') || DEFAULT_STUDENT;
+           document.getElementById('modalTeacherInput').value = localStorage.getItem('teacherName') || DEFAULT_TEACHER;
+           document.getElementById('nameModal').classList.add('open');
+       }
+
+       function closeNameModal() {
+           document.getElementById('nameModal').classList.remove('open');
+       }
+
+       function saveNamesFromModal() {
+           const sName = document.getElementById('modalStudentInput').value.trim() || DEFAULT_STUDENT;
+           const tName = document.getElementById('modalTeacherInput').value.trim() || DEFAULT_TEACHER;
+           localStorage.setItem('studentName', sName);
+           localStorage.setItem('teacherName', tName);
+           applyNames(sName, tName);
+           closeNameModal();
+       }
+
+       // Close modal on overlay click
+       document.getElementById('nameModal').addEventListener('click', function(e) {
+           if (e.target === this) closeNameModal();
+       });
+
+       document.addEventListener('DOMContentLoaded', loadNames);
+
+       // ===== QUIZ ANSWER CLICKS =====
+       document.querySelectorAll('.answer-option').forEach(option => {
+           option.addEventListener('click', function() {
+               const questionBlock = this.closest('.question-block');
+               const correct = questionBlock.dataset.correct;
+               questionBlock.querySelectorAll('.answer-option').forEach(opt => opt.classList.add('disabled'));
+               if (this.dataset.value === correct) {
+                   this.classList.add('correct');
+               } else {
+                   this.classList.add('wrong');
+                   questionBlock.querySelector('[data-value="' + correct + '"]').classList.add('correct');
+               }
+           });
+       });
+
+       // ===== CALCULATE SCORE WITH LEVELS =====
+       function calculateScore3() {
+           const sName = localStorage.getItem('studentName') || DEFAULT_STUDENT;
+           const blocks = document.querySelectorAll('.question-block');
+           const total = blocks.length;
+           let score = 0;
+           const lvl = { easy: 0, medium: 0, hard: 0, advanced: 0 };
+           const lvlMap = [
+               'easy','easy','easy','easy','easy',
+               'medium','medium','medium','medium','medium',
+               'hard','hard','hard','hard','hard',
+               'advanced','advanced','advanced','advanced','advanced'
+           ];
+           const lvlTotal = { easy: 5, medium: 5, hard: 5, advanced: 5 };
+
+           blocks.forEach((q, i) => {
+               const correct = q.dataset.correct;
+               const correctEl = q.querySelector('[data-value="' + correct + '"]');
+               if (correctEl && correctEl.classList.contains('correct')) {
+                   score++;
+                   if (i < lvlMap.length) lvl[lvlMap[i]]++;
+               }
+           });
+
+           // Save score
+           const scores = JSON.parse(localStorage.getItem('lessonScores') || '{}');
+           scores['lesson3'] = { score, total, percentage: Math.round(score / total * 100), date: new Date().toLocaleDateString('ar-EG') };
+           localStorage.setItem('lessonScores', JSON.stringify(scores));
+
+           // Update score display
+           document.getElementById('scoreDisplay3').textContent = score + ' / ' + total + ' ✨';
+
+           // Level bars & numbers
+           ['easy','medium','hard','advanced'].forEach(lvlKey => {
+               const abbr = { easy:'E', medium:'M', hard:'H', advanced:'A' }[lvlKey];
+               document.getElementById('num' + abbr + '3').textContent = lvl[lvlKey] + '/' + lvlTotal[lvlKey];
+           });
+           setTimeout(() => {
+               document.getElementById('barE3').style.width = (lvl.easy   / lvlTotal.easy   * 100) + '%';
+               document.getElementById('barM3').style.width = (lvl.medium / lvlTotal.medium * 100) + '%';
+               document.getElementById('barH3').style.width = (lvl.hard   / lvlTotal.hard   * 100) + '%';
+               document.getElementById('barA3').style.width = (lvl.advanced / lvlTotal.advanced * 100) + '%';
+           }, 400);
+
+           // Trophy tier
+           const pct = Math.round(score / total * 100);
+           let trophy, title, msg;
+           if (pct >= 90) {
+               trophy = '🏆'; title = 'عبقري يا ' + sName + '! أنت في مستوى العلماء!';
+               msg = score + ' من ' + total + ' ✨ أتقنت الأغلفة الأربعة بكل مستوياتها!';
+           } else if (pct >= 75) {
+               trophy = '🥇'; title = 'ممتاز يا ' + sName + '! أنت عالم أغلفة الأرض!';
+               msg = score + ' من ' + total + ' 🌟 أداء رائع في المستويات الصعبة!';
+           } else if (pct >= 60) {
+               trophy = '🥈'; title = 'جيد جداً يا ' + sName + '! قريب من القمة!';
+               msg = score + ' من ' + total + ' 👍 راجع أسئلة المستوى الصعب والرفيع!';
+           } else if (pct >= 40) {
+               trophy = '🥉'; title = 'جيد يا ' + sName + '! استمر في التعلم!';
+               msg = score + ' من ' + total + ' 💪 راجع مفاهيم الأغلفة الأربعة مجدداً.';
+           } else {
+               trophy = '📚'; title = 'لا تستسلم يا ' + sName + '! العلم رحلة!';
+               msg = score + ' من ' + total + ' 📖 اقرأ قصة الملوك الأربعة مرة أخرى وستتحسن!';
+           }
+
+           document.getElementById('trophy3').textContent = trophy;
+           document.getElementById('title3').textContent = title;
+           document.getElementById('msg3').textContent = msg;
+
+           // Show panel
+           const panel = document.getElementById('resultsPanel3');
+           const bg = document.getElementById('overlayBg3');
+           panel.classList.add('show');
+           bg.classList.add('show');
+           launchConfetti3();
+       }
+
+       function closeResults3() {
+           document.getElementById('resultsPanel3').classList.remove('show');
+           document.getElementById('overlayBg3').classList.remove('show');
+           document.querySelectorAll('.answer-option').forEach(o => o.classList.remove('correct','wrong','disabled'));
+           ['barE3','barM3','barH3','barA3'].forEach(id => { document.getElementById(id).style.width = '0%'; });
+       }
+
+       function launchConfetti3() {
+           const cols = ['#667eea','#764ba2','#FFD700','#4CAF50','#FF6B35','#E63946'];
+           for (let i = 0; i < 80; i++) {
+               setTimeout(() => {
+                   const el = document.createElement('div');
+                   const size = 8 + Math.random() * 8;
+                   el.style.cssText = 'position:fixed;top:-10px;left:' + (Math.random()*100) + '%;width:' + size + 'px;height:' + size + 'px;background:' + cols[Math.floor(Math.random()*cols.length)] + ';border-radius:' + (Math.random()>.5?'50%':'3px') + ';z-index:9999;pointer-events:none;animation:cFall3 ' + (2+Math.random()*2) + 's linear forwards';
+                   document.body.appendChild(el);
+                   setTimeout(() => el.remove(), 4500);
+               }, i * 25);
+           }
+           if (!document.getElementById('cStyle3')) {
+               const s = document.createElement('style');
+               s.id = 'cStyle3';
+               s.textContent = '@keyframes cFall3{from{transform:translateY(0) rotate(0);opacity:1}to{transform:translateY(110vh) rotate(720deg);opacity:0}}';
+               document.head.appendChild(s);
+           }
+       }
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        // Quiz functionality
+        document.querySelectorAll('.answer-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionBlock = this.closest('.question-block');
+                const correct = questionBlock.dataset.correct;
+                const selected = this.dataset.value;
+                
+                // Disable all options in this question
+                questionBlock.querySelectorAll('.answer-option').forEach(opt => {
+                    opt.classList.add('disabled');
+                });
+                
+                // Mark correct and wrong
+                if (selected === correct) {
+                    this.classList.add('correct');
+                } else {
+                    this.classList.add('wrong');
+                    questionBlock.querySelector(`[data-value="${correct}"]`).classList.add('correct');
+                }
+            });
+        });
+        
+        function calculateScore() {
+            let score = 0;
+            const total = document.querySelectorAll('.question-block').length;
+            
+            document.querySelectorAll('.question-block').forEach(q => {
+                const correct = q.dataset.correct;
+                const selected = q.querySelector('.answer-option.correct:not(.wrong)');
+                if (selected && selected.dataset.value === correct) {
+                    score++;
+                }
+            });
+            
+            const percentage = Math.round((score / total) * 100);
+            const resultsPanel = document.getElementById('resultsPanel');
+            const trophyIcon = document.getElementById('trophyIcon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            
+            scoreDisplay.textContent = `${score}/${total}`;
+            
+            if (percentage >= 80) {
+                trophyIcon.textContent = '🏆';
+                resultTitle.textContent = 'ممتاز! أنت خبير في علوم الأرض!';
+                resultMessage.textContent = 'لقد أثبتت أنك تفهم نظام الأرض بعمق. استمر في حماية كوكبنا!';
+            } else if (percentage >= 60) {
+                trophyIcon.textContent = '🥈';
+                resultTitle.textContent = 'جيد جداً! أنت في الطريق الصحيح';
+                resultMessage.textContent = 'لديك معرفة جيدة، لكن يمكنك دائماً معرفة المزيد. راجع الدرس مرة أخرى!';
+            } else {
+                trophyIcon.textContent = '📚';
+                resultTitle.textContent = 'حاول مرة أخرى';
+                resultMessage.textContent = 'لا تقلق! العلم رحلة مستمرة. اقرأ الدرس مرة أخرى وحاول مرة ثانية.';
+            }
+            
+            resultsPanel.classList.add('show');
+        }
+        
+        function closeResults() {
+            document.getElementById('resultsPanel').classList.remove('show');
+            // Reset quiz
+            document.querySelectorAll('.answer-option').forEach(opt => {
+                opt.classList.remove('correct', 'wrong', 'disabled');
+            });
+        }
+        
+        // Discovery boxes toggle
+        document.querySelectorAll('.discovery-box').forEach(box => {
+            box.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
