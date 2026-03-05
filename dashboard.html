@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة المواد - أكاديمية سمر</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
+        .header { background: white; padding: 20px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card { 
+            background: white; padding: 25px; border-radius: 15px; margin: 10px auto; max-width: 500px;
+            text-decoration: none; display: flex; justify-content: space-between; align-items: center;
+            border-right: 8px solid #6c5ce7; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .card:hover { transform: scale(1.02); background: #f8f9fa; }
+        .subject-title { font-size: 20px; font-weight: bold; color: #2d3436; }
+        .status { font-size: 14px; color: #6c5ce7; }
+        .disabled { opacity: 0.5; cursor: not-allowed; border-right-color: #ccc; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 id="welcomeText">مرحباً بك يا بطل</h1>
+        <p>اختر المادة لتبدأ التعلم</p>
+    </div>
+
+    <a href="علوم الصف الخامس/science_lessons.html" class="card">
+        <span class="subject-title">🔬 مادة العلوم (الصف الخامس)</span>
+        <span class="status">متاح الآن ✅</span>
+    </a>
+
+    <div class="card disabled">
+        <span class="subject-title">🧮 مادة الرياضيات</span>
+        <span class="status">قريباً.. 🔒</span>
+    </div>
+
+    <script>
+        const name = localStorage.getItem('studentName');
+        if(name) document.getElementById('welcomeText').innerText = "مرحباً بك يا بطل: " + name;
+    </script>
+
+</body>
+</html>
