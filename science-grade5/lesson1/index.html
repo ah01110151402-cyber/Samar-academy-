@@ -8,6 +8,91 @@
        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
        
        :root {
+          <!-- ============================================================
+  كود الربط مع الداشبورد — أضف ده في آخر كل ملف درس قبل </body>
+  ============================================================ -->
+<script>
+(function() {
+
+  // اقرأ الـ params من الرابط
+  const params    = new URLSearchParams(window.location.search);
+  const lessonId  = parseInt(params.get("lessonId") || "0");
+  const returnUrl = params.get("returnUrl") || "../../../index.html";
+  const student   = params.get("student") || localStorage.getItem("studentName") || "";
+
+  // لو الدرس ما فيهوش lessonId اوقف
+  if(!lessonId) return;
+
+  // ============ زرار الرجوع للداشبورد ============
+  const backBtn = document.createElement("a");
+  backBtn.href  = returnUrl;
+  backBtn.innerHTML = "← العودة للداشبورد";
+  backBtn.style.cssText = `
+    position:fixed; top:12px; right:12px; z-index:9999;
+    background:#1a237e; color:#ffd700;
+    padding:10px 20px; border-radius:50px;
+    font-family:'Tajawal',sans-serif; font-weight:800; font-size:14px;
+    text-decoration:none; box-shadow:0 4px 15px rgba(0,0,0,.25);
+    display:flex; align-items:center; gap:6px;
+  `;
+  document.body.appendChild(backBtn);
+
+  // ============ دالة إنهاء الدرس ============
+  // استدعيها لما الطالب يخلص الاختبار:
+  // finishLesson(90)  ← النتيجة كنسبة مئوية
+  window.finishLesson = function(score) {
+    score = score || 100;
+
+    // إظهار رسالة نجاح
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position:fixed; inset:0; background:rgba(13,27,62,.85);
+      z-index:99999; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:16px;
+      font-family:'Tajawal',sans-serif;
+      animation:fadeIn .3s ease;
+    `;
+    overlay.innerHTML = `
+      <style>@keyframes fadeIn{from{opacity:0}to{opacity:1}}</style>
+      <div style="font-size:80px">🎉</div>
+      <div style="color:#ffd700;font-size:28px;font-weight:900">أنجزت الدرس يا ${student}!</div>
+      <div style="color:white;font-size:18px">نتيجتك: ${score}%</div>
+      <div style="color:rgba(255,255,255,.7);font-size:14px">جاري الرجوع للداشبورد...</div>
+    `;
+    document.body.appendChild(overlay);
+
+    // ارجع للداشبورد مع النتيجة بعد 2 ثانية
+    setTimeout(() => {
+      const url = new URL(returnUrl, window.location.href);
+      url.searchParams.set("completed", lessonId);
+      url.searchParams.set("score", score);
+      window.location.href = url.toString();
+    }, 2200);
+  };
+
+  // ============ ربط تلقائي مع زرار النتيجة الموجود ============
+  // لو الملف بتاعك فيه دالة calculateScore، هتربطها تلقائياً
+  const origCalc = window.calculateScore;
+  if(typeof origCalc === "function") {
+    window.calculateScore = function() {
+      origCalc();
+      // احسب النتيجة من الـ DOM
+      setTimeout(() => {
+        const scoreEl = document.getElementById("scoreDisplay");
+        if(scoreEl) {
+          const txt = scoreEl.textContent; // مثلاً "15/20"
+          const parts = txt.split("/");
+          if(parts.length === 2) {
+            const pct = Math.round((parseInt(parts[0]) / parseInt(parts[1])) * 100);
+            finishLesson(pct);
+          }
+        }
+      }, 3500); // بعد ما تظهر نتيجة الاختبار بـ3.5 ثانية
+    };
+  }
+
+})();
+</script>
            --primary: #1a237e;
            --primary-dark: #0d1b3e;
            --primary-light: #3949ab;
